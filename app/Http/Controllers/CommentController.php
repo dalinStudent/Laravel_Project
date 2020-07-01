@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -36,9 +37,9 @@ class CommentController extends Controller
      */
     public function store(Request $request,$id)
     {
-
-        $comment = new Comment();
+        $user = User::find(auth());
         $student = Student::find($id);
+        $comment = new Comment();
         $comment = $student->comments;
         $comment->comment = $request->comment;
         $comment->student_id = $student;
