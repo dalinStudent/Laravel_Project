@@ -11,12 +11,19 @@
 |
 */
 
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home','HomeController@index')->name('home');
 Route::resource('students','StudentController');
 Route::resource('comments','CommentController');
+Route::post('/addComment/{id}','CommentController@addComment')->name('addComment');
+Route::get('/returnOutFollowup/{id}','StudentController@returnOutFollowUp')->name('returnOutFollowUp');
+Route::get('/outFollowup/{id}','StudentController@outFollowup')->name('outFollowup');
+Route::get('/backFollowup/{id}','StudentController@backFollowup')->name('backFollowup');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Student;
+use App\User;
 
 class StudentController extends Controller
 {
@@ -108,6 +109,43 @@ class StudentController extends Controller
         $student->save();
 
         return redirect('/home');
+    }
+
+    /**
+     * Display the out student followup view
+     */
+
+    public function returnOutFollowUp(){
+        $users = User::all();
+        $students = Student::all();
+        return view('students.outFollowup', compact('students', 'users'));
+    }
+
+    /**
+     * out followup view
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function outFollowup($id)
+    {
+        $student = Student::find($id);
+        $student->activeFollowup = 0;
+        $student->save();
+        return redirect('/returnOutFollowUp');
+    }
+
+    public function backFolloup($id) {
+        if(auth::user()->role==1){
+            $student = Student::find($id);
+            $student->activefollowup = 1;
+            $student->save();
+            $result = redirect('/home');
+        }else{
+            $result = "Unauthorize user";
+        }
+        return $result;
     }
 
     /**

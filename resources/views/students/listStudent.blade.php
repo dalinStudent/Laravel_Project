@@ -79,6 +79,7 @@
                     </tr>
                   </thead>
                   @foreach ($students as $student)
+                  @if ($student->activefollowup==1)
                   <tbody>
                     <tr>
                         <td>{{$student->id}}</td>
@@ -86,12 +87,18 @@
                         <td>{{$student->lastName}}</td>
                         <td>{{$student->class}}</td>
                         <td>
-                                <a href="{{route('students.show',$student->id)}}"><i class='material-icons text-success'>visibility</i></a>
-                                <a href="{{route('students.edit',$student->id)}}"><i class="material-icons">edit</i></a>
-                                <a href="{{route('comments.show',$student->id)}}"><i class="material-icons text-secondary">comment</i></a>
+                          {{-- @if (auth::user()->role_id==1) --}}
+                          <a href="{{route('students.show',$student->id)}}"><i class='material-icons text-success'>visibility</i></a>
+                            <a href="{{route('students.edit',$student->id)}}"><i class="material-icons">edit</i></a>
+                            <a href="{{route('comments.show',$student->id)}}"><i class="material-icons text-secondary">comment</i></a>
+                            <a href="{{route('outFollowup',$student->id)}}"><i class="material-icons text-danger">forward</i></a>
+                          {{-- @endif --}}
+                               
                         </td>
                     </tr>
                   </tbody>
+                  @endif
+                  
                   @endforeach
                 </table>
             </div>

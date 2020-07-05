@@ -14,6 +14,9 @@
                         <p><strong>CLASS: </strong>{{$student->class}}</p>
                         <p><strong>DESCRIPTION: </strong>{{$student->description}}</p>
                     </div>
+                    <div class="card-footer">
+                        <a href="/home" class="btn btn-danger">Back</a>
+                    </div>
                 </div>
             </div>
             <div class="col-3"></div>

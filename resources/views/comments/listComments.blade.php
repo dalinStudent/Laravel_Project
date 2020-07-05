@@ -6,6 +6,7 @@
                 <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addStudent">
                     Add Student
                 </button>
+                <a href="/home" class="btn btn-danger float-right">Back</a>
                 
                   <!-- The Modal -->
                   <div class="modal" id="addStudent">
@@ -18,9 +19,9 @@
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         
-                        <!-- Modal body -->
+                        <!-- Modal body --> 
                         <div class="modal-body">
-                        <form action="{{route('comments.store')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('addComment',$student->id)}}" method="POST">
                               @csrf
                               <div class="form-group">
                                     <textarea name="comment" id="comment"  cols="63" rows="5" placeholder="comment" required></textarea>
@@ -50,8 +51,15 @@
                             <td>{{$comment->id}}</td>
                             <td>{{$comment->comment}}</td>
                             <td>
-                                <a href=""><i class="material-icons">edit</i></a>
-                                <a href=""><i class="material-icons text-danger">delete</i></a>
+                                <a href="{{route('comments.edit',$comment->id)}}"><i class="material-icons">edit</i></a>
+                    
+                                  <form action="{{route('comments.destroy',$comment->id)}}" method="POST">
+                                       @csrf
+                                       @method('DELETE')
+                                       
+                                        <button type="submit" onclick="return confirm('Are you sure to delete?')"><i class="material-icons text-danger">delete</i></button>
+                                   </form>
+                             
                             </td>
                         </tr>
                     </tbody>

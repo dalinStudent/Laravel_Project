@@ -23,12 +23,13 @@
                                     </div>
                                     <div class="row mt-3">
                                       <div class="col">
-                                          <select name="class" id="class" class="form-control">
-                                              <option value="Class" disabled>Class</option> 
-                                              <option <?php if($student->class=="WEB-2020A"){?> selected="selected"<?php}?> value="WEB-2020A">WEB-2020A</option>
-                                              <option <?php if($student->class=="WEB-2020B"){?> selected="selected"<?php}?> value="WEB-2020B">WEB-2020B</option>
-                                              <option <?php if($student->class=="SNA2020"){?> selected="selected"<?php}?> value="SNA2020">SNA2020</option>
-                                          </select>
+                                        <select class="form-control" name="class">
+                                            
+                                            <option <?php if($student->class=="WEB-2020A"){?>selected="selected"<?php } ?> value="WEB-2020A">WEB-2020A</option>
+                                            <option <?php if($student->class=="WEB-2020B"){?>selected="selected"<?php } ?> value="WEB-2020B">WEB-2020B</option>
+                                            <option <?php if($student->class=="SNA-2020"){?>selected="selected"<?php } ?> value="SNA-2020">SNA-2020</option>
+                                            
+                                        </select>
                                       </div>
                                       <div class="col">
                                       <input type="file" class="form-control" name="picture" required>
@@ -43,7 +44,7 @@
                                         <textarea name="description" id="description"  cols="67" rows="5" value="{{$student->description}}" required></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-danger mt-3 ">Update</button>
-                                    <button type="button" class="btn btn-secondary mt-3 float-right" data-dismiss="modal">Cancel</button>
+                                    <a type="button" class="btn btn-secondary mt-3 float-right" href="/home">Cancel</a>
                                 </form>
                         </div>
                     </div>
